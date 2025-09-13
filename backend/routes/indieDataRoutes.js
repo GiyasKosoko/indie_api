@@ -1,20 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const {getData, setData, updateData, deleteData} = require('../controllers/indieapiController');
 
-router.get('/', (req, res) => {
-    res.status(200).json({ message: 'Get indie data.' });
-});
-
-router.post('/', (req, res) => {
-    res.status(200).json({ message: 'Set indie data.' });
-});
- 
-router.put('/:id', (req, res) => {
-    res.status(200).json({ message: `Update indie data: ${req.params.id}.` });
-});
-
-router.delete('/:id', (req, res) => {
-     res.status(200).json({ message: `Delete indie data: ${req.params.id}.` });
-});
+// Routes for indie data
+router.route('/').get(getData).post(setData);
+router.route('/:id').delete(deleteData).put(updateData);
 
 module.exports = router;
